@@ -16,13 +16,13 @@ is bundled in the skill and triggers on every coding task.
 From a git remote:
 ```sh
 claude plugin marketplace add shseooo/clauroboros
-claude plugin install ouroboros@ouroboros-cc
+claude plugin install clauroboros@clauroboros-cc
 ```
 
 From a local checkout (development):
 ```sh
 claude plugin marketplace add ./clauroboros
-claude plugin install ouroboros@ouroboros-cc
+claude plugin install clauroboros@clauroboros-cc
 ```
 
 ## What it ports
@@ -35,7 +35,7 @@ claude plugin install ouroboros@ouroboros-cc
 | Drift      | `/ooo-drift` prompts a self-assessment scored as `0.5*goal + 0.3*constraint + 0.2*ontology`.          |
 | Unstuck    | `/ooo-unstuck [persona]` activates one of 5 lateral-thinking personas (recorded in state.json).        |
 | Ralph      | `/ooo-ralph [N]` runs an inline self-driven evaluate-and-fix loop with a hard cap.                    |
-| Harness    | Karpathy guidelines bundled in `skills/ouroboros/SKILL.md`; auto-loads on coding-related triggers.    |
+| Harness    | Karpathy guidelines bundled in `skills/clauroboros/SKILL.md`; auto-loads on coding-related triggers.    |
 
 ## Slash commands
 
@@ -90,7 +90,7 @@ clauroboros/
 │   ├── ooo-status.md
 │   └── ooo-reset.md
 └── skills/
-    └── ouroboros/
+    └── clauroboros/
         └── SKILL.md
 ```
 

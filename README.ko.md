@@ -16,13 +16,13 @@
 원격 git 저장소에서:
 ```sh
 claude plugin marketplace add shseooo/clauroboros
-claude plugin install ouroboros@ouroboros-cc
+claude plugin install clauroboros@clauroboros-cc
 ```
 
 로컬 체크아웃에서 (개발):
 ```sh
 claude plugin marketplace add ./clauroboros
-claude plugin install ouroboros@ouroboros-cc
+claude plugin install clauroboros@clauroboros-cc
 ```
 
 ## 이식한 개념
@@ -35,7 +35,7 @@ claude plugin install ouroboros@ouroboros-cc
 | Drift      | `/ooo-drift` 가 자가 평가를 요청 → `0.5*goal + 0.3*constraint + 0.2*ontology`                       |
 | Unstuck    | `/ooo-unstuck [persona]` 로 5개 lateral persona 중 하나 활성화 (state.json 에 기록)                   |
 | Ralph      | `/ooo-ralph [N]` 단일 커맨드 내부에서 evaluate-and-fix 자가 루프 (하드 cap 포함)                     |
-| 하네스     | Karpathy 가이드라인이 `skills/ouroboros/SKILL.md` 에 번들 — 코딩 트리거 시 auto-load                   |
+| 하네스     | Karpathy 가이드라인이 `skills/clauroboros/SKILL.md` 에 번들 — 코딩 트리거 시 auto-load                   |
 
 ## 슬래시 커맨드
 
@@ -90,7 +90,7 @@ clauroboros/
 │   ├── ooo-status.md
 │   └── ooo-reset.md
 └── skills/
-    └── ouroboros/
+    └── clauroboros/
         └── SKILL.md
 ```
 

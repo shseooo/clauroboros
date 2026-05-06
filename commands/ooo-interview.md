@@ -6,14 +6,14 @@ allowed-tools: Read, Write, Edit, Bash
 
 You are starting an Ouroboros interview. The goal is: **$1**
 
-Apply the Karpathy coding harness from the `ouroboros` skill (think before
+Apply the Karpathy coding harness from the `clauroboros` skill (think before
 coding · simplicity · surgical · goal-driven). Do NOT write production code
 during the interview.
 
 ## Steps
 
 1. Ensure `.ouroboros/` exists. If `.ouroboros/state.json` is missing, create
-   it with the empty schema documented in the `ouroboros` skill. If
+   it with the empty schema documented in the `clauroboros` skill. If
    `.ouroboros/seed.json` already exists and `locked: true`, ask the user
    whether to start a NEW draft (the existing seed.yaml is preserved either
    way). Stop if they say no.

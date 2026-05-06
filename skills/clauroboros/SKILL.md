@@ -1,5 +1,5 @@
 ---
-name: ouroboros
+name: clauroboros
 description: Spec-first coding workflow. Apply when working on any non-trivial coding task — building, fixing, refactoring, evaluating, or debugging. Enforces the Karpathy coding harness (think before coding, simplicity, surgical changes, goal-driven execution) and the Ouroboros loop (interview → seed → evaluate → drift → unstuck → ralph). Read .ouroboros/ state files at the start of every coding session if they exist.
 ---
 

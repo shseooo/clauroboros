@@ -33,5 +33,5 @@ Ask the user to pick one of:
 
 3. Note: `personaTurnsLeft` is informational — Claude Code has no native
    per-turn hook, so the user must remember to keep applying the lens (or
-   re-run `/ooo-unstuck`). The `ouroboros` skill instructs the assistant to
+   re-run `/ooo-unstuck`). The `clauroboros` skill instructs the assistant to
    re-read `state.json` at session start to pick the persona back up.
