@@ -1,0 +1,19 @@
+{
+  "name": "ouroboros-cc",
+  "owner": { "name": "pi-ouroboros port" },
+  "metadata": {
+    "description": "Ouroboros agent-OS loop, ported natively to Claude Code.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "ouroboros",
+      "source": "./",
+      "description": "Spec-first AI workflow (interview → seed → evaluate → drift → unstuck → ralph) implemented as Claude Code slash commands and a skill. Karpathy coding harness applied throughout.",
+      "version": "0.1.0",
+      "author": { "name": "pi-ouroboros port" },
+      "category": "development",
+      "keywords": ["ouroboros", "spec-first", "evaluation", "karpathy"]
+    }
+  ]
+}

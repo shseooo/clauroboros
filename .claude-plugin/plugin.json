@@ -1,0 +1,9 @@
+{
+  "name": "ouroboros",
+  "version": "0.1.0",
+  "description": "Native Ouroboros loop (interview → seed → evaluate → drift → unstuck → ralph) for Claude Code, with the Karpathy coding harness applied.",
+  "author": { "name": "pi-ouroboros port" },
+  "license": "MIT",
+  "keywords": ["ouroboros", "agent-os", "spec-first", "evaluation", "karpathy"],
+  "skills": "./skills/"
+}
