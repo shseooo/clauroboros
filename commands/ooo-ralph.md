@@ -30,7 +30,7 @@ command rather than across user turns:
 while state.json#ralph.turn < cap:
   state.json#ralph.turn += 1, persist
   
-  Run the equivalent of /evaluate (mechanical + per-AC grading).
+  Run the equivalent of /ooo-evaluate (mechanical + per-AC grading).
   
   if all ACs pass:
     write state.json#ralph = null, persist
@@ -51,7 +51,7 @@ if cap hit without converging:
 ## Hard rules
 - Never disable or weaken acceptance criteria to make the loop "converge."
   If an AC is wrong, STOP and tell the user — they should re-run
-  `/interview` to revise the seed.
+  `/ooo-interview` to revise the seed.
 - Apply the Karpathy harness on every iteration: surgical changes, no
   speculative refactors, no scope creep.
 - Each iteration must produce a verifiable result before continuing.

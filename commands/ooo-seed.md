@@ -17,6 +17,6 @@ Display the current Ouroboros specification.
 2. Otherwise, read `.ouroboros/state.json`:
    - If `seedDraft` is non-null, print "Draft (NOT locked)" with the same
      fields as above plus the running ambiguity hint.
-   - Otherwise, tell the user no seed exists and to run `/interview <goal>`.
+   - Otherwise, tell the user no seed exists and to run `/ooo-interview <goal>`.
 
 Do not modify any files.

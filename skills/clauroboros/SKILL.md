@@ -96,16 +96,16 @@ When any field is active:
 
 | Slash command       | Purpose                                                                          |
 | ------------------- | -------------------------------------------------------------------------------- |
-| `/interview`        | Socratic Q&A that exposes hidden assumptions; produces a draft seed              |
-| `/seed`             | Show the current seed (or draft, if interviewing)                                |
-| `/evaluate`         | Mechanical (test runner) + semantic (grade each AC) verification gate            |
-| `/drift`            | Self-assess goal/constraint/ontology drift vs the locked seed                    |
-| `/unstuck`          | Switch to a lateral-thinking persona for the next 3 turns                        |
-| `/ralph`            | Self-driven evaluate-and-continue loop until ACs converge or a hard turn cap     |
-| `/status`           | Print interview / seed / persona / ralph / drift state                           |
-| `/reset`            | Clear session state (preserves the locked seed)                                  |
+| `/ooo-interview`        | Socratic Q&A that exposes hidden assumptions; produces a draft seed              |
+| `/ooo-seed`             | Show the current seed (or draft, if interviewing)                                |
+| `/ooo-evaluate`         | Mechanical (test runner) + semantic (grade each AC) verification gate            |
+| `/ooo-drift`            | Self-assess goal/constraint/ontology drift vs the locked seed                    |
+| `/ooo-unstuck`          | Switch to a lateral-thinking persona for the next 3 turns                        |
+| `/ooo-ralph`            | Self-driven evaluate-and-continue loop until ACs converge or a hard turn cap     |
+| `/ooo-status`           | Print interview / seed / persona / ralph / drift state                           |
+| `/ooo-reset`            | Clear session state (preserves the locked seed)                                  |
 
-### The five lateral personas (used by `/unstuck`)
+### The five lateral personas (used by `/ooo-unstuck`)
 
 | ID                | Lens                                                                          |
 | ----------------- | ----------------------------------------------------------------------------- |
@@ -115,7 +115,7 @@ When any field is active:
 | `adversary`       | Actively try to BREAK the current solution — edge cases, races, holes         |
 | `architect`       | Zoom out — redraw module boundaries; what if seams were elsewhere?            |
 
-### Mechanical evaluator detection (used by `/evaluate`)
+### Mechanical evaluator detection (used by `/ooo-evaluate`)
 
 Detect (in order) and run:
 1. `package.json` with `scripts.test` → `npm test --silent`
@@ -143,5 +143,5 @@ order: `created_at`, `locked`, `ambiguity`, `goal`, `acceptance_criteria`,
 
 - At session start, if `.ouroboros/state.json` exists, READ it before answering. Honor any active persona, interview, or ralph cap.
 - During an interview, never write production code. Ask one question per turn.
-- During ralph, after each work step run `/evaluate`. Stop and emit the literal token `CONVERGED` when all ACs pass. Stop on cap.
+- During ralph, after each work step run `/ooo-evaluate`. Stop and emit the literal token `CONVERGED` when all ACs pass. Stop on cap.
 - The seed is **immutable** once locked. If you discover the seed is wrong, STOP and report — do not silently re-scope. Either revise via a new interview or accept the drift.
