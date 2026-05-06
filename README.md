@@ -1,6 +1,6 @@
 # clauroboros
 
-[English](./README.md) | [한국어](./README.ko.md)
+[English](./README.md) | [한국어](./README.ko.md) | [日本語](./README.ja.md)
 
 Native [Ouroboros](https://github.com/Q00/ouroboros) loop as a Claude Code
 plugin.
@@ -30,25 +30,25 @@ claude plugin install clauroboros@clauroboros-cc
 | Concept    | Claude Code mechanism                                                                                  |
 | ---------- | ------------------------------------------------------------------------------------------------------ |
 | Seed       | `.ouroboros/seed.json` (canonical) + `seed.yaml` (mirror); locked once finalized.                     |
-| Interview  | `/ooo-interview <goal>` slash command instructs the agent to ask Socratic questions one at a time.    |
-| Evaluate   | `/ooo-evaluate` runs the test suite (auto-detected) and grades each AC by inspecting the codebase.    |
-| Drift      | `/ooo-drift` prompts a self-assessment scored as `0.5*goal + 0.3*constraint + 0.2*ontology`.          |
-| Unstuck    | `/ooo-unstuck [persona]` activates one of 5 lateral-thinking personas (recorded in state.json).        |
-| Ralph      | `/ooo-ralph [N]` runs an inline self-driven evaluate-and-fix loop with a hard cap.                    |
+| Interview  | `/interview <goal>` slash command instructs the agent to ask Socratic questions one at a time.        |
+| Evaluate   | `/evaluate` runs the test suite (auto-detected) and grades each AC by inspecting the codebase.        |
+| Drift      | `/drift` prompts a self-assessment scored as `0.5*goal + 0.3*constraint + 0.2*ontology`.              |
+| Unstuck    | `/unstuck [persona]` activates one of 5 lateral-thinking personas (recorded in state.json).            |
+| Ralph      | `/ralph [N]` runs an inline self-driven evaluate-and-fix loop with a hard cap.                        |
 | Harness    | Karpathy guidelines bundled in `skills/clauroboros/SKILL.md`; auto-loads on coding-related triggers.    |
 
 ## Slash commands
 
 | Command                   | Effect                                                                  |
 | ------------------------- | ----------------------------------------------------------------------- |
-| `/ooo-interview <goal>`   | Start a Socratic interview to crystallize a seed.                       |
-| `/ooo-seed`               | Print the locked seed (or current draft).                              |
-| `/ooo-evaluate`           | Run mechanical tests + grade each AC with file-level evidence.         |
-| `/ooo-drift`              | Self-assess drift vs the locked seed.                                  |
-| `/ooo-unstuck [id]`       | Switch to a lateral persona (5 options).                               |
-| `/ooo-ralph [on\|off\|N]` | Run an inline evaluate-and-fix loop with a hard cap.                   |
-| `/ooo-status`             | Show interview / seed / persona / ralph / drift state.                 |
-| `/ooo-reset`              | Clear session state (the locked seed is preserved).                    |
+| `/interview <goal>`       | Start a Socratic interview to crystallize a seed.                       |
+| `/seed`                   | Print the locked seed (or current draft).                              |
+| `/evaluate`               | Run mechanical tests + grade each AC with file-level evidence.         |
+| `/drift`                  | Self-assess drift vs the locked seed.                                  |
+| `/unstuck [id]`           | Switch to a lateral persona (5 options).                               |
+| `/ralph [on\|off\|N]`     | Run an inline evaluate-and-fix loop with a hard cap.                   |
+| `/status`                 | Show interview / seed / persona / ralph / drift state.                 |
+| `/reset`                  | Clear session state (the locked seed is preserved).                    |
 
 ## Notes on Claude Code's harness limits
 
@@ -81,17 +81,44 @@ clauroboros/
 │   ├── plugin.json
 │   └── marketplace.json
 ├── commands/
-│   ├── ooo-interview.md
-│   ├── ooo-seed.md
-│   ├── ooo-evaluate.md
-│   ├── ooo-drift.md
-│   ├── ooo-unstuck.md
-│   ├── ooo-ralph.md
-│   ├── ooo-status.md
-│   └── ooo-reset.md
+│   ├── interview.md
+│   ├── seed.md
+│   ├── evaluate.md
+│   ├── drift.md
+│   ├── unstuck.md
+│   ├── ralph.md
+│   ├── status.md
+│   └── reset.md
 └── skills/
     └── clauroboros/
         └── SKILL.md
+```
+
+## Example workflow
+
+```
+1. /interview "build a todo CLI"
+   → agent runs a Socratic interview, one question at a time
+   → each answer updates seedDraft in .ouroboros/state.json
+   → locks seed.json + seed.yaml once ambiguity ≤ 0.2 and AC ≥ 5
+
+2. (write code)
+
+3. /evaluate
+   → auto-detects + runs npm test / pytest / make test / cargo test / go test
+   → inspects the codebase per AC and records verdict (pass/fail/n-a) with evidence
+   → prints pass / fail tally
+
+4. /drift
+   → self-assesses goal / constraint / ontology divergence
+   → weighted ≤ 0.30 is OK, otherwise DRIFTED
+
+5. (when stuck) /unstuck adversary
+   → activates a persona that tries to break the current solution
+
+6. /ralph 8
+   → self-loops evaluate → fix-failing-AC within cap=8
+   → prints CONVERGED and stops automatically once all pass
 ```
 
 ## Notes

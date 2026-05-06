@@ -7,7 +7,7 @@ Run a full Ouroboros evaluation pass.
 
 ## Pre-conditions
 - `.ouroboros/seed.json` must exist with `locked: true`. If not, tell the
-  user to run `/ooo-interview <goal>` first and stop.
+  user to run `/interview <goal>` first and stop.
 
 ## Stage 1 — Mechanical
 

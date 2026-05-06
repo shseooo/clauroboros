@@ -1,6 +1,6 @@
 {
   "name": "clauroboros",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Native Ouroboros loop (interview → seed → evaluate → drift → unstuck → ralph) for Claude Code, with the Karpathy coding harness applied.",
   "author": { "name": "shseooo" },
   "license": "MIT",

@@ -1,6 +1,6 @@
 # clauroboros
 
-[English](./README.md) | [한국어](./README.ko.md)
+[English](./README.md) | [한국어](./README.ko.md) | [日本語](./README.ja.md)
 
 [Ouroboros](https://github.com/Q00/ouroboros) 워크플로우를 Claude Code 플러그인으로
 네이티브 이식.
@@ -30,25 +30,25 @@ claude plugin install clauroboros@clauroboros-cc
 | 개념        | Claude Code 메커니즘                                                                                |
 | ---------- | --------------------------------------------------------------------------------------------------- |
 | Seed       | `.ouroboros/seed.json` (정본) + `seed.yaml` (미러). finalize 후 잠김.                                |
-| Interview  | `/ooo-interview <목표>` 가 에이전트에게 Socratic 질문을 한 번에 하나씩 하도록 지시                   |
-| Evaluate   | `/ooo-evaluate` 가 테스트 러너 자동 감지 후 실행하고, 코드베이스를 검사하여 각 AC 채점                |
-| Drift      | `/ooo-drift` 가 자가 평가를 요청 → `0.5*goal + 0.3*constraint + 0.2*ontology`                       |
-| Unstuck    | `/ooo-unstuck [persona]` 로 5개 lateral persona 중 하나 활성화 (state.json 에 기록)                   |
-| Ralph      | `/ooo-ralph [N]` 단일 커맨드 내부에서 evaluate-and-fix 자가 루프 (하드 cap 포함)                     |
+| Interview  | `/interview <목표>` 가 에이전트에게 Socratic 질문을 한 번에 하나씩 하도록 지시                       |
+| Evaluate   | `/evaluate` 가 테스트 러너 자동 감지 후 실행하고, 코드베이스를 검사하여 각 AC 채점                    |
+| Drift      | `/drift` 가 자가 평가를 요청 → `0.5*goal + 0.3*constraint + 0.2*ontology`                           |
+| Unstuck    | `/unstuck [persona]` 로 5개 lateral persona 중 하나 활성화 (state.json 에 기록)                       |
+| Ralph      | `/ralph [N]` 단일 커맨드 내부에서 evaluate-and-fix 자가 루프 (하드 cap 포함)                         |
 | 하네스     | Karpathy 가이드라인이 `skills/clauroboros/SKILL.md` 에 번들 — 코딩 트리거 시 auto-load                   |
 
 ## 슬래시 커맨드
 
 | 커맨드                    | 동작                                                              |
 | ------------------------- | ----------------------------------------------------------------- |
-| `/ooo-interview <목표>`    | 목표를 seed 로 결정화하기 위한 Socratic 인터뷰 시작                 |
-| `/ooo-seed`               | 잠긴 seed (또는 현재 draft) 출력                                   |
-| `/ooo-evaluate`           | mechanical 테스트 + 각 AC 를 파일 레벨 증거로 채점                  |
-| `/ooo-drift`              | 잠긴 seed 대비 drift 자가 평가                                     |
-| `/ooo-unstuck [id]`       | lateral persona 5종 중 하나로 전환                                  |
-| `/ooo-ralph [on\|off\|N]` | 하드 cap 포함 인라인 evaluate-and-fix 루프                          |
-| `/ooo-status`             | interview / seed / persona / ralph / drift 상태                    |
-| `/ooo-reset`              | 세션 상태 초기화 (잠긴 seed 는 보존)                               |
+| `/interview <목표>`        | 목표를 seed 로 결정화하기 위한 Socratic 인터뷰 시작                 |
+| `/seed`                   | 잠긴 seed (또는 현재 draft) 출력                                   |
+| `/evaluate`               | mechanical 테스트 + 각 AC 를 파일 레벨 증거로 채점                  |
+| `/drift`                  | 잠긴 seed 대비 drift 자가 평가                                     |
+| `/unstuck [id]`           | lateral persona 5종 중 하나로 전환                                  |
+| `/ralph [on\|off\|N]`     | 하드 cap 포함 인라인 evaluate-and-fix 루프                          |
+| `/status`                 | interview / seed / persona / ralph / drift 상태                    |
+| `/reset`                  | 세션 상태 초기화 (잠긴 seed 는 보존)                               |
 
 ## Claude Code 하네스 제약
 
@@ -81,14 +81,14 @@ clauroboros/
 │   ├── plugin.json
 │   └── marketplace.json
 ├── commands/
-│   ├── ooo-interview.md
-│   ├── ooo-seed.md
-│   ├── ooo-evaluate.md
-│   ├── ooo-drift.md
-│   ├── ooo-unstuck.md
-│   ├── ooo-ralph.md
-│   ├── ooo-status.md
-│   └── ooo-reset.md
+│   ├── interview.md
+│   ├── seed.md
+│   ├── evaluate.md
+│   ├── drift.md
+│   ├── unstuck.md
+│   ├── ralph.md
+│   ├── status.md
+│   └── reset.md
 └── skills/
     └── clauroboros/
         └── SKILL.md
@@ -97,26 +97,26 @@ clauroboros/
 ## 워크플로우 예시
 
 ```
-1. /ooo-interview "할 일 관리 CLI 만들기"
+1. /interview "할 일 관리 CLI 만들기"
    → 에이전트가 한 번에 한 질문씩 Socratic 인터뷰 진행
    → 답변마다 .ouroboros/state.json 의 seedDraft 업데이트
    → ambiguity ≤ 0.2 + AC ≥ 5 도달 시 seed.json + seed.yaml 잠금
 
 2. (코드 작성)
 
-3. /ooo-evaluate
+3. /evaluate
    → npm test / pytest / make test / cargo test / go test 자동 감지 + 실행
    → 각 AC 별로 코드베이스 검사 후 verdict (pass/fail/n-a) 와 증거 기록
    → pass / fail 집계 출력
 
-4. /ooo-drift
+4. /drift
    → goal / constraint / ontology divergence 자가 평가
    → weighted ≤ 0.30 이면 OK, 초과면 DRIFTED
 
-5. (막혔을 때) /ooo-unstuck adversary
+5. (막혔을 때) /unstuck adversary
    → 현재 솔루션을 깨려는 persona 활성화
 
-6. /ooo-ralph 8
+6. /ralph 8
    → cap=8 내에서 evaluate → 실패 AC 수정 자가 반복
    → 모두 pass 시 CONVERGED 출력 후 자동 정지
 ```
