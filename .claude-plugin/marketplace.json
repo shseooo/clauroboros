@@ -3,14 +3,14 @@
   "owner": { "name": "shseooo" },
   "metadata": {
     "description": "Ouroboros agent-OS loop, ported natively to Claude Code.",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   "plugins": [
     {
       "name": "clauroboros",
       "source": "./",
       "description": "Spec-first AI workflow (interview → seed → evaluate → drift → unstuck → ralph) implemented as Claude Code slash commands and a skill. Karpathy coding harness applied throughout.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "author": { "name": "shseooo" },
       "category": "development",
       "keywords": ["ouroboros", "spec-first", "evaluation", "karpathy"]

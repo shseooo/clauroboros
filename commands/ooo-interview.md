@@ -45,7 +45,12 @@ during the interview.
    - Append a `seed_set` event to `interview.jsonl`
    - Write state.json back
 
-6. **Finalize** when both `ambiguity ≤ 0.2` AND `acceptance_criteria.length ≥ 5`:
+6. **Finalize** only when ALL of these hold: `ambiguity ≤ 0.2` AND
+   `acceptance_criteria.length ≥ 5` AND you have no more material questions
+   to ask. The metric thresholds are necessary but not sufficient — if a
+   load-bearing assumption, edge case, ontology gap, or anti-case is still
+   unresolved in your head, keep interviewing instead of finalizing. When
+   the question queue is genuinely empty:
    - Build the final seed object with `created_at` (current ISO), `locked: true`
    - Write `.ouroboros/seed.json` (canonical)
    - Write `.ouroboros/seed.yaml` — mirror with double-quoted scalars,
